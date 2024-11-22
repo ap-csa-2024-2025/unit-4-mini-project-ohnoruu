@@ -11,7 +11,7 @@ public class Main
 		System.out.println("Enter a sentence:");
 		str = sc.nextLine();
 
-		str.toLowerCase();
+		str=str.toLowerCase();
 		algorithm1(str);
 		algorithm2(str);
 
@@ -35,12 +35,25 @@ public class Main
 	// This method should implement Algorithm 2 and print all neccessary data
 	public static void algorithm2(String input) //take every unique character and follow it with the number of times it appears in the string
 	{
+		int letterCount = 0;
+		String currentLetter = "";
+		String output = "";
 		// TODO: Put solution to Algorithm 1 here
-		for (letter = 0; letter < input.length(); letter++){ //for letter in String input
-			for (int lettersBefore = 0; lettersBefore < letter; lettersBefore++){
-				
+		//For length of total string
+		for (int i=0; i < input.length(); i++){
+			letterCount=0;
+			//count occurences of letter in string, add accordingly to substring
+			currentLetter = input.substring(i,i+1);
+			for (int letter=0; letter < input.length(); letter++){ //loop through string and count occurences of letter of i
+				if ((input.substring(letter, letter+1).equals(currentLetter))&&(output.indexOf(currentLetter)==(-1))&&(!currentLetter.equals(" "))){ //check if letter is unique (does not occur again)
+					letterCount++;
+				}
 			}
+		if (letterCount!=0){
+			output+=letterCount;
+			output+=currentLetter;
 		}
-		System.out.println("Implement me!");
+		}
+		System.out.println(output);
 	}
 }
